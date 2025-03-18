@@ -16,7 +16,7 @@ class _MySquareState extends State<MySquare> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 200,
+        height: 300,
         width: 250,
         color: widget.color,
         child: Align(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:widget_of_the_day/square.dart';
+import 'package:widget_of_the_day/widgets/circle_widget.dart';
+import 'package:widget_of_the_day/widgets/square.dart';
 
 class ListViewPage extends StatefulWidget {
   const ListViewPage({super.key});
@@ -26,14 +27,37 @@ class _ListViewPageState extends State<ListViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-          itemCount: _post.length,
-          itemBuilder: (context, index) {
-            return MySquare(
-              child: _post[index],
-              color: _postColors[index],
-            );
-          }),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Container(
+              height: 150,
+              child: ListView.builder(
+                itemCount: _post.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return CircleWidget(
+                    child: _post[index],
+                  );
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: _post.length,
+              itemBuilder: (context, index) {
+                return MySquare(
+                  child: _post[index],
+                  color: _postColors[index],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
